@@ -2,4 +2,6 @@
 *.log
 *.gz
 *.tex
+.settings/
+*.project
 hw3.pdf
