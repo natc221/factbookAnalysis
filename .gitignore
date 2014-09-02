@@ -3,5 +3,6 @@
 *.gz
 *.tex
 .settings/
+bin/
 *.project
 hw3.pdf
