@@ -1,0 +1,457 @@
+\documentclass[letterpaper]{article}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\begin{document}
+
+\pagestyle{fancy}
+\lhead{NETS 150 Homework 3}
+\rhead{Nathaniel Chan}
+
+\textbf{Part 1: Theory}
+\begin{enumerate}
+\item A socket is the endpoint of a network connection. A connection attaches a socket that is bound to a specific port. A \texttt{ServerSocket} is implemented for a server, and it listens to a connection request from a client. A \texttt{Socket} is used for a client, and is the other end of the connection. It is also bounded to a particular port.
+
+\item When the port numbers do not match, the connection will not be established, and it will throw a ConnectException, seen as follows:
+
+\texttt{java.net.ConnectException: Connection refused}
+
+Or if there is already a server that is awaiting a connection at the specified port, then it will connect to that ServerSocket, but incorrectly.
+
+\item Only the \texttt{doSomething()} method is modified from the \texttt{Server.java} from class, seen as follows:
+
+\begin{lstlisting}
+private void doSomething() {
+	while (in.hasNextLine()) {
+		String message = in.nextLine();
+		System.out.println("The Client says: " + message);
+
+		if (message.contains("ADD") || message.contains("MUL")) {
+			String[] split = message.split(" ");
+			try {
+				double x = Double.parseDouble(split[1]);
+				double y = Double.parseDouble(split[2]);
+				double result = 0;
+
+				if (split[0].equals("ADD")) {
+					result = x + y;
+				}
+				if (split[0].equals("MUL")) {
+					result = x * y;
+				}
+				out.println("Answer: " + result);
+			}
+			catch (NumberFormatException e) {
+				out.println("Error. Wrong format.");
+			}
+		}
+	}
+}
+\end{lstlisting}
+
+\end{enumerate}
+
+\newpage
+\textbf{Part 2: Programming}
+\begin{enumerate}
+\item Argentina,
+Chile,
+Colombia,
+Ecuador,
+Peru
+
+\item United Kingdom
+
+\item Angola
+Australia
+Botswana
+Burundi
+Christmas Island
+Cocos (Keeling) Islands
+Comoros
+Congo, Democratic Republic of the
+Congo, Republic of the
+Fiji
+Indonesia
+Kenya
+Kiribati
+Lesotho
+Madagascar
+Malawi
+Mauritius
+Mozambique
+Namibia
+New Caledonia
+New Zealand
+Norfolk Island
+Papua New Guinea
+Rwanda
+Seychelles
+Solomon Islands
+South Africa
+Swaziland
+Tanzania
+Timor-Leste
+Tuvalu
+Vanuatu
+Zambia
+Zimbabwe
+
+
+
+\item Hong Kong,
+India,
+Kazakhstan,
+Malaysia,
+Maldives,
+Nepal,
+Pakistan,
+Thailand
+
+\item Iceland : 50684 kWh
+
+Norway : 23461 kWh
+
+Kuwait : 16105 kWh
+
+Finland : 14747 kWh
+
+Canada : 14603 kWh
+
+Sweden : 13937 kWh
+
+United Arab Emirates : 13540 kWh
+
+Qatar : 12915 kWh
+
+United States : 12280 kWh
+
+Luxembourg : 11601 kWh
+
+\item \textbf{More than 80\%:}
+
+Algeria: Sunni Muslim (state religion) 99\%
+
+Anguilla: Protestant 83.1\% (Anglican 29\%
+
+Argentina: nominally Roman Catholic 92\% (less than 20\% practicing)
+
+Armenia: Armenian Apostolic 94.7\%
+
+Aruba: Roman Catholic 80.8\%
+
+Azerbaijan: Muslim 93.4\%
+
+Bahrain: Muslim (Shia and Sunni) 81.2\%
+
+Bangladesh: Muslim 89.5\%
+
+Bolivia: Roman Catholic 95\%
+
+British Virgin Islands: Protestant 84\%
+
+Burma: Buddhist 89\%
+
+Cambodia: Buddhist (official) 96.4\%
+
+Colombia: Roman Catholic 90\%
+
+Comoros: Sunni Muslim 98\%
+
+Croatia: Roman Catholic 87.8\%
+
+Cuba: nominally Roman Catholic 85\%
+
+Curacao: Roman Catholic 80.1\%
+
+Denmark: Evangelical Lutheran (official) 95\%
+
+Djibouti: Muslim 94\%
+
+Dominican Republic: Roman Catholic 95\%
+
+Ecuador: Roman Catholic 95\%
+
+Egypt: Muslim (mostly Sunni) 90\%
+
+Faroe Islands: Evangelical Lutheran 83.8\%
+
+Finland: Lutheran Church of Finland 82.5\%
+
+France: Roman Catholic 83\%-88\%
+
+Gambia, The: Muslim 90\%
+
+Gaza Strip: Muslim (predominantly Sunni) 99.3\%
+
+Georgia: Orthodox Christian (official) 83.9\%
+
+Greece: Greek Orthodox (official) 98\%
+
+Guam: Roman Catholic 85\%
+
+Guinea: Muslim 85\%
+
+Honduras: Roman Catholic 97\%
+
+Hong Kong: eclectic mixture of local religions 90\%
+
+Iceland: Lutheran Church of Iceland (official) 80.7\%
+
+India: Hindu 80.5\%
+
+Indonesia: Muslim 86.1\%
+
+Iran: Muslim (official) 98\%
+
+Iraq: Muslim (official) 97\%
+
+Ireland: Roman Catholic 87.4\%
+
+Japan: Shintoism 83.9\%
+
+Jordan: Sunni Muslim 92\% (official)
+
+Kuwait: Muslim (official) 85\%
+
+Liberia: Christian 85.6\%
+
+Libya: Sunni Muslim (official) 97\%
+
+Luxembourg: Roman Catholic 87\%
+
+Malawi: Christian 82.7\%
+
+Mali: Muslim 94.8\%
+
+Malta: Roman Catholic (official) 98\%
+
+Mauritania: Muslim (official) 100\%
+
+Mexico: Roman Catholic 82.7\%
+
+Moldova: Eastern Orthodox 98\%
+
+Monaco: Roman Catholic 90\% (official)
+
+Morocco: Muslim 99\% (official)
+
+Namibia: Christian 80\% to 90\% (at least 50% Lutheran)
+
+Nepal: Hindu 80.6\%
+
+Pakistan: Muslim (official) 96.4\% (Sunni 85-90\%)
+
+Panama: Roman Catholic 85\%
+
+Paraguay: Roman Catholic 89.6\%
+
+Peru: Roman Catholic 81.3\%
+
+Poland: Roman Catholic 89.8\% [about 75\% practicing]
+
+Portugal: Roman Catholic 84.5\%
+
+Puerto Rico: Roman Catholic 85%
+
+Saint Pierre and Miquelon: Roman Catholic 99\%
+
+Saint Vincent and the Grenadines: Protestant 75\% (Anglican 47\%)
+
+Saudi Arabia: Muslim (official) 100\%
+
+Senegal: Muslim 94\%
+
+Serbia: Serbian Orthodox 85\%
+
+Seychelles: Roman Catholic 82.3\%
+
+Spain: Roman Catholic 94%
+
+Sweden: Lutheran 87\%
+
+Taiwan: mixture of Buddhist and Taoist 93\%
+
+Tajikistan: Sunni Muslim 85\%
+
+Thailand: Buddhist (official) 94.6\%
+
+Timor-Leste: Roman Catholic 98\%
+
+Turkey: Muslim 99.8\% (mostly Sunni)
+
+Turkmenistan: Muslim 89\%
+
+Tuvalu: Protestant 98.4\% (Church of Tuvalu (Congregationalist) 97\%
+
+Uzbekistan: Muslim 88\% (mostly Sunni)
+
+Venezuela: nominally Roman Catholic 96\%
+
+Virgin Islands: Protestant 59\%
+
+Wallis and Futuna: Roman Catholic 99\% \\
+
+\newpage
+\textbf{Less than 50\%:}
+
+Angola: indigenous beliefs 47%
+
+Belize: Roman Catholic 39.3%
+
+Benin: Catholic 27.1%
+
+Bosnia and Herzegovina: Muslim 40%
+
+Cameroon: indigenous beliefs 40%
+
+Canada: Roman Catholic 42.6%
+
+Central African Republic: indigenous beliefs 35%
+
+Christmas Island: Buddhist 36%
+
+Cote d'Ivoire: Muslim 38.6%
+
+Czech Republic: Roman Catholic 10.3%
+
+Estonia: Evangelical Lutheran 13.6%
+
+Ethiopia: Ethiopian Orthodox 43.5%
+
+Germany: Protestant 34%
+
+Jamaica: Protestant 62.5% (Seventh-Day Adventist 10.8%
+
+Korea, South: Christian 31.6% (Protestant 24%
+
+Latvia: Lutheran 19.6%
+
+Mauritius: Hindu 48%
+
+Mozambique: Catholic 28.4%
+
+Netherlands: Roman Catholic 30%
+
+Palau: Roman Catholic 41.6%
+
+Papua New Guinea: Roman Catholic 27%
+
+Russia: Russian Orthodox 15-20%
+
+Singapore: Buddhist 42.5%
+
+Sint Maarten: Roman Catholic 39%
+
+Suriname: Hindu 27.4%
+
+Swaziland: Zionist 40% (a blend of Christianity and indigenous ancestral worship)
+
+Switzerland: Roman Catholic 41.8%
+
+Togo: Christian 29%
+
+Tonga: Christian (Free Wesleyan Church claims over 30
+
+Trinidad and Tobago: Roman Catholic 26%
+
+Uganda: Roman Catholic 41.9%
+
+Uruguay: Roman Catholic 47.1%
+
+Vietnam: Buddhist 9.3%
+
+\newpage
+\item Holy See (Vatican City),
+Lesotho,
+San Marino
+
+\item Top 10 countries with the highest military expenditure per capita:
+
+Qatar : \$9351
+
+Oman : \$3308
+
+United Arab Emirates : \$3224
+
+Saudi Arabia : \$3113
+
+Israel : \$2427
+
+United States : \$2315
+
+Singapore : \$2188
+
+Kuwait : \$2105
+
+Australia : \$1329
+
+Brunei : \$1272
+\end{enumerate}
+
+\textbf{Extra Credit:}
+\begin{enumerate}
+\item Top 10 countries with highest ratio of population to number of airports:
+
+Bangladesh,
+Hong Kong,
+India,
+Nigeria,
+China,
+Ghana,
+Vietnam,
+Gambia
+Rwanda,
+Ethiopia
+
+\item 
+If (0,0) is defined as the coordinate 90 N, 180 W, 
+ then the box is between the coordinates 
+(114, 70)
+(124, 80)
+
+Countries within this box:
+
+Anguilla,
+Antigua and Barbuda,
+Barbados,
+British Virgin Islands,
+Dominica,
+Grenada,
+Montserrat,
+Puerto Rico,
+Saint Barthelemy,
+Saint Kitts and Nevis,
+Saint Lucia,
+Saint Vincent and the Grenadines,
+Sint Maarten,
+Trinidad and Tobago,
+Venezuela,
+Virgin Islands
+
+\end{enumerate}
+\end{document}
